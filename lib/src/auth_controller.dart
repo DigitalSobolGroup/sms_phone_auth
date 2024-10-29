@@ -139,6 +139,7 @@ class FirebasePhoneAuthController extends ChangeNotifier {
     print('0000000000000000');
     print('otp: $otp');
     _verificationId = '123456';
+    print('555555555555');
     // if ((!kIsWeb && _verificationId == null) ||
     //     (kIsWeb && _webConfirmationResult == null)) return false;
 
