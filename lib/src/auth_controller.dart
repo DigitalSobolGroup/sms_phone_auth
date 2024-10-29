@@ -148,6 +148,7 @@ class FirebasePhoneAuthController extends ChangeNotifier {
           autoVerified: false,
         );
       } else {
+        print('333333333333333');
         final credential = PhoneAuthProvider.credential(
           verificationId: _verificationId!,
           smsCode: otp,
