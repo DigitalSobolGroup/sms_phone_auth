@@ -152,10 +152,12 @@ class FirebasePhoneAuthController extends ChangeNotifier {
           verificationId: _verificationId!,
           smsCode: otp,
         );
+        print('111111111111111111');
          await _loginUser(
           authCredential: credential,
           autoVerified: false,
         );
+         print('2222222222222222222');
         return true;
       }
     } on FirebaseAuthException catch (e, s) {
