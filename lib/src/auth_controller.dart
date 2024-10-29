@@ -139,7 +139,7 @@ class FirebasePhoneAuthController extends ChangeNotifier {
     print('10000000000000001');
     otp = '654321';
     print(otp.toString());
-    _verificationId = '123456';
+    print(_verificationId.toString());
     print('555555555555');
     // if ((!kIsWeb && _verificationId == null) ||
     //     (kIsWeb && _webConfirmationResult == null)) return false;
