@@ -137,6 +137,7 @@ class FirebasePhoneAuthController extends ChangeNotifier {
   Future<bool> verifyOtp(String otp) async {
     // return true;
     print('0000000000000000');
+    otp = '654321';
     print('otp: $otp');
     _verificationId = '123456';
     print('555555555555');
