@@ -225,7 +225,7 @@ class FirebasePhoneAuthController extends ChangeNotifier {
       _verificationId = verificationId;
     }
     try {
-      if (kIsWeb) {
+      if (!kIsWeb) {
         _webConfirmationResult = await _auth.signInWithPhoneNumber(
           _phoneNumber!,
           _recaptchaVerifierForWeb,
@@ -234,6 +234,7 @@ class FirebasePhoneAuthController extends ChangeNotifier {
         _onCodeSent?.call();
         _setTimer();
       } else {
+        print('999999999999');
         codeSendCompleter = Completer();
 
         await _auth.verifyPhoneNumber(
@@ -245,7 +246,7 @@ class FirebasePhoneAuthController extends ChangeNotifier {
           timeout: _autoRetrievalTimeOutDuration,
           forceResendingToken: _forceResendingToken,
         );
-
+print('88888888888888');
         // if (shouldAwaitCodeSend) await codeSendCompleter.future;
       }
 
