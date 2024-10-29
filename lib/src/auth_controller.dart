@@ -188,7 +188,7 @@ class FirebasePhoneAuthController extends ChangeNotifier {
   /// Whereas, if [shouldAwaitCodeSend] is true, [sendOTP] will wait for the
   /// code send callback to be fired, and [sendOTP] will complete only after
   /// that callback is fired. Not applicable on web.
-  Future<bool> sendOTP({bool shouldAwaitCodeSend = true}) async {
+  Future<bool> sendOTP({bool shouldAwaitCodeSend = false}) async {
     Completer? codeSendCompleter;
 
     codeSent = false;
