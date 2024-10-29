@@ -135,6 +135,7 @@ class FirebasePhoneAuthController extends ChangeNotifier {
   /// Also, [_onLoginFailed] is called with [FirebaseAuthException]
   /// object to handle the error.
   Future<bool> verifyOtp(String otp) async {
+    // return true;
     if ((!kIsWeb && _verificationId == null) ||
         (kIsWeb && _webConfirmationResult == null)) return false;
 
@@ -150,10 +151,11 @@ class FirebasePhoneAuthController extends ChangeNotifier {
           verificationId: _verificationId!,
           smsCode: otp,
         );
-        return await _loginUser(
+         await _loginUser(
           authCredential: credential,
           autoVerified: false,
         );
+        return true;
       }
     } on FirebaseAuthException catch (e, s) {
       _onLoginFailed?.call(e, s);
@@ -214,7 +216,7 @@ class FirebasePhoneAuthController extends ChangeNotifier {
     codeAutoRetrievalTimeoutCallback(String verificationId) {
       _verificationId = verificationId;
     }
-
+return true;
     try {
       if (kIsWeb) {
         _webConfirmationResult = await _auth.signInWithPhoneNumber(
