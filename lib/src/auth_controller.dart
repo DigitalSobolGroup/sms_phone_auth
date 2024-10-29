@@ -224,7 +224,6 @@ class FirebasePhoneAuthController extends ChangeNotifier {
     codeAutoRetrievalTimeoutCallback(String verificationId) {
       _verificationId = verificationId;
     }
-return true;
     try {
       if (kIsWeb) {
         _webConfirmationResult = await _auth.signInWithPhoneNumber(
@@ -247,7 +246,7 @@ return true;
           forceResendingToken: _forceResendingToken,
         );
 
-        if (shouldAwaitCodeSend) await codeSendCompleter.future;
+        // if (shouldAwaitCodeSend) await codeSendCompleter.future;
       }
 
       return true;
