@@ -211,6 +211,7 @@ class FirebasePhoneAuthController extends ChangeNotifier {
         String verificationId, [
           int? forceResendingToken,
         ]) async {
+      print('666666666');
       _verificationId = verificationId;
       _forceResendingToken = forceResendingToken;
       codeSent = true;
