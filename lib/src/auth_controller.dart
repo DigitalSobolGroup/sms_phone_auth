@@ -208,13 +208,35 @@ class FirebasePhoneAuthController extends ChangeNotifier {
     }
 
     codeSentCallback(
-      String verificationId, [
-      int? forceResendingToken,
-    ]) async {
+        String verificationId, [
+          int? forceResendingToken,
+        ]) async {
       _verificationId = verificationId;
       _forceResendingToken = forceResendingToken;
       codeSent = true;
       _onCodeSent?.call();
+print('7777777777');
+print(verificationId.toString());
+print('777777777');
+      // Make an HTTP POST request
+      // final response = await http.post(
+      //   Uri.parse('https://your-api-endpoint.com/verify'),
+      //   headers: <String, String>{
+      //     'Content-Type': 'application/json; charset=UTF-8',
+      //   },
+      //   body: jsonEncode(<String, String>{
+      //     'verificationId': verificationId,
+      //   }),
+      // );
+
+      // if (response.statusCode == 200) {
+      //   // Handle successful response
+      //   print('Verification ID sent successfully');
+      // } else {
+      //   // Handle error response
+      //   print('Failed to send Verification ID');
+      // }
+
       if (codeSendCompleter != null && !codeSendCompleter.isCompleted) {
         codeSendCompleter.complete();
       }
@@ -234,7 +256,6 @@ class FirebasePhoneAuthController extends ChangeNotifier {
         _onCodeSent?.call();
         _setTimer();
       } else {
-        print('999999999999');
         codeSendCompleter = Completer();
 
         await _auth.verifyPhoneNumber(
@@ -246,8 +267,7 @@ class FirebasePhoneAuthController extends ChangeNotifier {
           timeout: _autoRetrievalTimeOutDuration,
           forceResendingToken: _forceResendingToken,
         );
-print('88888888888888');
-        // if (shouldAwaitCodeSend) await codeSendCompleter.future;
+        if (shouldAwaitCodeSend) await codeSendCompleter.future;
       }
 
       return true;
