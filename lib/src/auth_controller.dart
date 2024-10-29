@@ -136,7 +136,7 @@ class FirebasePhoneAuthController extends ChangeNotifier {
   /// object to handle the error.
   Future<bool> verifyOtp(String otp) async {
     // return true;
-    print('0000000000000001');
+    print('10000000000000001');
     otp = '654321';
     print(otp.toString());
     _verificationId = '123456';
