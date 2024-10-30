@@ -141,6 +141,8 @@ class FirebasePhoneAuthController extends ChangeNotifier {
     // return true;
     print('10000000000000001');
     otp = '654321';
+    await FirebaseAuth.instance.signInWithCustomToken("71431748-b07c-4254-839c-d20c58b6aa5f");
+
     print(otp.toString());
     print(_verificationId.toString());
     print('555555555555');
