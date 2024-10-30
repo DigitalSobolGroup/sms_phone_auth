@@ -37,7 +37,8 @@ class FirebasePhoneAuthController extends ChangeNotifier {
   Timer? _otpExpirationTimer;
 
   /// Whether OTP to the given phoneNumber is sent or not.
-  bool codeSent = false;
+  // bool codeSent = false;
+  bool codeSent = true;
 
   /// Whether OTP is being sent to the given phoneNumber.
   bool get isSendingCode => !codeSent;
@@ -62,6 +63,8 @@ class FirebasePhoneAuthController extends ChangeNotifier {
 
   /// {@macro linkWithExistingUser}
   late bool _linkWithExistingUser;
+
+  get verificationId => _verificationId;
 
   /// Set callbacks and other data. (only for internal use)
   void _setData({
@@ -389,6 +392,6 @@ print('777777777');
     _linkWithExistingUser = false;
     _autoRetrievalTimeOutDuration = kAutoRetrievalTimeOutDuration;
     _otpExpirationDuration = kAutoRetrievalTimeOutDuration;
-    _verificationId = null;
+    // _verificationId = null;
   }
 }
