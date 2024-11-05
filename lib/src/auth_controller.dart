@@ -1,3 +1,5 @@
+
+
 part of 'auth_handler.dart';
 
 class FirebasePhoneAuthController extends ChangeNotifier {
@@ -137,30 +139,53 @@ class FirebasePhoneAuthController extends ChangeNotifier {
   ///
   /// Also, [_onLoginFailed] is called with [FirebaseAuthException]
   /// object to handle the error.
+
+  Future<void> callFirebaseFunction() async {
+    try {
+      HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('createCustomToken');
+      final results = await callable.call(<String, dynamic>{
+        'uid': 'value1'
+      });
+      print('Function result: ${results.data}');
+    } catch (e) {
+      print('Error calling function: $e');
+    }
+  }
+
+
+
+
   Future<bool> verifyOtp(String otp) async {
     // return true;
     print('10000000000000001');
     otp = '654321';
+
+    const uid = 'some-uid';
+await callFirebaseFunction();
+
+
+
+
     // await FirebaseAuth.instance.signInWithCustomToken("eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImlhdCI6MTczMDc5ODI3MiwiZXhwIjoxNzMwODAxODcyLCJpc3MiOiI0ODg4MzY3NzgyMTgtY29tcHV0ZUBkZXZlbG9wZXIuZ3NlcnZpY2VhY2NvdW50LmNvbSIsInN1YiI6IjQ4ODgzNjc3ODIxOC1jb21wdXRlQGRldmVsb3Blci5nc2VydmljZWFjY291bnQuY29tIiwidWlkIjoicmdoZ2hoIn0.S5GqOipES_fF2ve5Ec6iHFyMkkhAK6Vkx_3HrtuchmzL21vDV9rwkO0AXL571JeKw1JDgMQxw_kb7aBcP5ElXt8jMDnBzXhtVa5WoXw7_ie1DEmlEuAjMXmZMtk0uHJIE-O2bFwlSj35d3b52Ex3j1JjjSOWmow37gWmMM9HOO3AK_ZRfsDLLlsa_03RobpnPOdIq4SxdesH7uiEDKNipawdKTOIoFYfYVk_JVaqkTwa5KymetgdNdVlBSUpdnGOExuWmAX2lyIlLeAUryWsrfyq6AwjwV12UnEebTTd1obgVazpoX-5Syz_XGciA_E3qkgtkih4L0s3hVrzGLZLMg");
-    try {
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithCustomToken("eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImlhdCI6MTczMDgwNDg4OCwiZXhwIjoxNzMwODA4NDg4LCJpc3MiOiI0ODg4MzY3NzgyMTgtY29tcHV0ZUBkZXZlbG9wZXIuZ3NlcnZpY2VhY2NvdW50LmNvbSIsInN1YiI6IjQ4ODgzNjc3ODIxOC1jb21wdXRlQGRldmVsb3Blci5nc2VydmljZWFjY291bnQuY29tIiwidWlkIjoiamZ1eWtjdmpwb2tbcDU0NjU0NSJ9.NwHMrzOTXJ3Np9US969KcBS13bQ3T-BRIMpfSceJBjlEV81MGdMDdC9gO3SaG9b91Eu0C2qQjaZUBopERrJKdBbHOuel6dqh_yDvwevZSf_0iRRPREicXOEmI15fz8kxkAqUR3kwkhT6XR4J2fDsJ3iZ5fFjKPji2TphZ94OanAmw7Dg2divE_vLeZ4f75M4jGYXUdzbEnxE_bECvwTAmBs_srvMjVxfdGV5eNMi4eEm4MBgCvVkapCdqHARiJnrbTCLF-mQddRYsX1_k1OvTxcg7BbPgayz0lgvkGN9ehvIHYGmjOOKKzeqd_3nVeHoE47dRvTD3sy-EVNlf_8oUQ");
-    } catch (e) {
-      if (e is FirebaseAuthException) {
-        if (e.code == 'network-request-failed') {
-          // Handle network error
-          print('Network error: ${e.message}');
-        } else if (e.code == 'app-check-token-error') {
-          // Handle App Check token error
-          print('App Check token error: ${e.message}');
-        } else {
-          // Handle other FirebaseAuth errors
-          print('FirebaseAuth error: ${e.message}');
-        }
-      } else {
-        // Handle other errors
-        print('Error: ${e.toString()}');
-      }
-    }
+    // try {
+    //   UserCredential userCredential = await FirebaseAuth.instance.signInWithCustomToken("eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImlhdCI6MTczMDgwNDg4OCwiZXhwIjoxNzMwODA4NDg4LCJpc3MiOiI0ODg4MzY3NzgyMTgtY29tcHV0ZUBkZXZlbG9wZXIuZ3NlcnZpY2VhY2NvdW50LmNvbSIsInN1YiI6IjQ4ODgzNjc3ODIxOC1jb21wdXRlQGRldmVsb3Blci5nc2VydmljZWFjY291bnQuY29tIiwidWlkIjoiamZ1eWtjdmpwb2tbcDU0NjU0NSJ9.NwHMrzOTXJ3Np9US969KcBS13bQ3T-BRIMpfSceJBjlEV81MGdMDdC9gO3SaG9b91Eu0C2qQjaZUBopERrJKdBbHOuel6dqh_yDvwevZSf_0iRRPREicXOEmI15fz8kxkAqUR3kwkhT6XR4J2fDsJ3iZ5fFjKPji2TphZ94OanAmw7Dg2divE_vLeZ4f75M4jGYXUdzbEnxE_bECvwTAmBs_srvMjVxfdGV5eNMi4eEm4MBgCvVkapCdqHARiJnrbTCLF-mQddRYsX1_k1OvTxcg7BbPgayz0lgvkGN9ehvIHYGmjOOKKzeqd_3nVeHoE47dRvTD3sy-EVNlf_8oUQ");
+    // } catch (e) {
+    //   if (e is FirebaseAuthException) {
+    //     if (e.code == 'network-request-failed') {
+    //       // Handle network error
+    //       print('Network error: ${e.message}');
+    //     } else if (e.code == 'app-check-token-error') {
+    //       // Handle App Check token error
+    //       print('App Check token error: ${e.message}');
+    //     } else {
+    //       // Handle other FirebaseAuth errors
+    //       print('FirebaseAuth error: ${e.message}');
+    //     }
+    //   } else {
+    //     // Handle other errors
+    //     print('Error: ${e.toString()}');
+    //   }
+    // }
     print(otp.toString());
     print(_verificationId.toString());
     print('555555555555');
