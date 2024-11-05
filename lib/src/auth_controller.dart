@@ -143,8 +143,7 @@ class FirebasePhoneAuthController extends ChangeNotifier {
   Future<void> callFirebaseFunction() async {
     try {
       HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('createCustomToken');
-      final results = await callable.call(<String, dynamic>{
-        'uid': 'value1'
+      final results = await callable.call(<String, dynamic>{'uid':  'value1'
       });
       print('Function result: ${results.data}');
     } catch (e) {
@@ -161,7 +160,6 @@ class FirebasePhoneAuthController extends ChangeNotifier {
     otp = '654321';
 
     const uid = 'some-uid';
-await callFirebaseFunction();
 
 
 
